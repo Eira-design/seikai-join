@@ -15,13 +15,13 @@
       height: 100%;
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
+      justify-content: center; /* default vertikal center */
       align-items: center;
       flex-direction: column;
       text-align: center;
       color: white;
 
-      /* Background image + gradient overlay dari Google Drive */
+      /* Background image + gradient overlay */
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                   url('https://eira-design.github.io/seikai-join/assets/background.jpg');
       background-size: cover;
@@ -67,8 +67,12 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
 
-    /* Responsive untuk HP */
+    /* Responsive untuk HP / layar kecil */
     @media (max-width: 600px) {
+      html, body {
+        justify-content: flex-start; /* pindah ke atas */
+        padding-top: 40px; /* beri jarak dari atas */
+      }
       h1 {
         font-size: 2em;
       }
