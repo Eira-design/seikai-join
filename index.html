@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Join Seikai Server</title>
   <style>
-    /* Reset default margin/padding */
+    /* Reset margin/padding */
     * {
       margin: 0;
       padding: 0;
@@ -14,27 +14,31 @@
     html, body {
       height: 100%;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #151515, #2b2b2b);
-      color: white;
-    }
-
-    body {
       display: flex;
-      justify-content: center; /* horizontal center */
-      align-items: center;     /* vertical center */
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
       text-align: center;
-      padding: 20px;
+      color: white;
+
+      /* Background image + gradient overlay dari Google Drive */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url('https://drive.google.com/uc?export=view&id=12VPJ18lakXZU1LBcyxsJzmkJFf53WCGk');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     h1 {
       font-size: 2.5em;
       margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
 
     p {
       font-size: 1.1em;
       margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
 
     a {
@@ -47,17 +51,20 @@
       font-weight: bold;
       font-size: 1.2em;
       transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
     a:hover {
       background: #4a47a3;
+      transform: translateY(-2px);
     }
 
     .note {
       margin-top: 30px;
-      color: #aaa;
+      color: #ddd;
       font-size: 0.95em;
       line-height: 1.5;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
 
     /* Responsive untuk HP */
