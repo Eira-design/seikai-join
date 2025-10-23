@@ -1,95 +1,52 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Join Seikai Server</title>
   <style>
-    /* Reset margin/padding */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     html, body {
       height: 100%;
       font-family: Arial, sans-serif;
-      color: white;
-
-      /* Background image + gradient overlay */
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                  url('https://eira-design.github.io/seikai-join/assets/background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
       display: flex;
       flex-direction: column;
-      /* --- PERUBAHAN UTAMA: Pindah konten ke atas --- */
-      justify-content: flex-start; /* Pindah konten ke bagian atas */
+      justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
-      padding-top: 80px; /* Tambahkan jarak dari atas (untuk Desktop) */
-    }
-    
-    /* Hapus aturan 'justify-content: center;' yang lama */
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-    }
-
-    a {
-      display: inline-block;
-      background: #5e60ce;
       color: white;
-      text-decoration: none;
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1.2em;
-      transition: 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
+      overflow: hidden;
+
+      /* Background gradient animasi */
+      background: linear-gradient(270deg, #151515, #2b2b2b, #151515);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
     }
 
-    a:hover {
-      background: #4a47a3;
-      transform: translateY(-2px);
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
 
-    .note {
-      color: #ddd;
-      font-size: 0.95em;
-      line-height: 1.5;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    h1, p, a, .note {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
 
-    /* Responsive untuk HP */
-    @media (max-width: 600px) {
-      html, body {
-        /* Gunakan padding yang berbeda untuk HP */
-        padding-top: 40px; 
-      }
+    h1 { animation-delay: 0.3s; font-size:2.5em; margin-bottom:20px; text-shadow:2px 2px 4px rgba(0,0,0,0.7);}
+    p { animation-delay: 0.6s; font-size:1.1em; margin-bottom:20px; text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
+    a { animation-delay: 0.9s; display:inline-block; background:#5e60ce; color:white; text-decoration:none; padding:16px 32px; border-radius:12px; font-weight:bold; font-size:1.2em; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:0.3s; margin-bottom:20px;}
+    a:hover { background:#4a47a3; transform: translateY(-3px) scale(1.05);}
+    .note { animation-delay: 1.2s; color:#ddd; font-size:0.95em; line-height:1.5; text-shadow:1px 1px 2px rgba(0,0,0,0.7); }
 
-      h1 {
-        font-size: 2em;
-      }
-      a {
-        padding: 14px 24px;
-        font-size: 1em;
-      }
-      .note {
-        font-size: 0.9em;
-      }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* Responsive HP */
+    @media (max-width:600px){
+      html, body { justify-content:flex-start; padding-top:40px; }
+      h1{ font-size:2em; }
+      a{ padding:14px 24px; font-size:1em; }
+      .note{ font-size:0.9em; }
     }
   </style>
 </head>
@@ -101,8 +58,7 @@
   </a>
   <div class="note">
     <p>Untuk pemain HP (Android/iOS), tambahkan server secara manual:</p>
-    <p><b>Alamat:</b> mc.seikai.online<br>
-       <b>Port:</b> 25669</p>
+    <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25669</p>
   </div>
 </body>
 </html>
