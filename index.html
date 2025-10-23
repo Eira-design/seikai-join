@@ -16,10 +16,21 @@
       color: white;
       overflow: hidden;
 
-      /* Background gradient animasi */
-      background: linear-gradient(270deg, #151515, #2b2b2b, #151515);
+      /* Background image + overlay gradient animasi */
+      background: url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Overlay animasi gradient */
+    body::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(270deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6), rgba(0,0,0,0.4));
       background-size: 600% 600%;
       animation: gradientBG 15s ease infinite;
+      z-index:0;
     }
 
     @keyframes gradientBG {
@@ -28,18 +39,21 @@
       100%{background-position:0% 50%}
     }
 
-    h1, p, a, .note {
-      opacity: 0;
+    /* Konten di atas overlay */
+    body > * {
+      position: relative;
+      z-index:1;
+      opacity:0;
       animation: fadeIn 1s forwards;
     }
 
-    h1 { animation-delay: 0.3s; font-size:2.5em; margin-bottom:20px; text-shadow:2px 2px 4px rgba(0,0,0,0.7);}
-    p { animation-delay: 0.6s; font-size:1.1em; margin-bottom:20px; text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
-    a { animation-delay: 0.9s; display:inline-block; background:#5e60ce; color:white; text-decoration:none; padding:16px 32px; border-radius:12px; font-weight:bold; font-size:1.2em; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:0.3s; margin-bottom:20px;}
+    h1 { animation-delay:0.3s; font-size:2.5em; margin-bottom:20px; text-shadow:2px 2px 4px rgba(0,0,0,0.7);}
+    p { animation-delay:0.6s; font-size:1.1em; margin-bottom:20px; text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
+    a { animation-delay:0.9s; display:inline-block; background:#5e60ce; color:white; text-decoration:none; padding:16px 32px; border-radius:12px; font-weight:bold; font-size:1.2em; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:0.3s; margin-bottom:20px;}
     a:hover { background:#4a47a3; transform: translateY(-3px) scale(1.05);}
-    .note { animation-delay: 1.2s; color:#ddd; font-size:0.95em; line-height:1.5; text-shadow:1px 1px 2px rgba(0,0,0,0.7); }
+    .note { animation-delay:1.2s; color:#ddd; font-size:0.95em; line-height:1.5; text-shadow:1px 1px 2px rgba(0,0,0,0.7); }
 
-    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeIn { to { opacity:1; } }
 
     /* Responsive HP */
     @media (max-width:600px){
