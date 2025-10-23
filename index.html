@@ -10,40 +10,31 @@
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: center; /* center di PC */
       align-items: center;
       text-align: center;
       color: white;
+      padding: 20px;
       overflow: hidden;
 
-      /* Background image + overlay gradient animasi */
-      background: url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
+      /* Background gambar + overlay gradient */
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+                  url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
       background-size: cover;
-      position: relative;
+
+      /* Animasi gradient overlay */
+      animation: gradientShift 15s ease infinite;
     }
 
-    /* Overlay animasi gradient */
-    body::before {
-      content: "";
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(270deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6), rgba(0,0,0,0.4));
-      background-size: 600% 600%;
-      animation: gradientBG 15s ease infinite;
-      z-index:0;
+    @keyframes gradientShift {
+      0% { background-position: center top; }
+      50% { background-position: center bottom; }
+      100% { background-position: center top; }
     }
 
-    @keyframes gradientBG {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-
-    /* Konten di atas overlay */
-    body > * {
-      position: relative;
-      z-index:1;
-      opacity:0;
+    /* Konten fade-in */
+    h1, p, a, .note {
+      opacity: 0;
       animation: fadeIn 1s forwards;
     }
 
