@@ -92,36 +92,38 @@
       to { opacity: 1; }
     }
 
-    /* 1. REVISI V3: Media Query untuk tampilan HP/Sempit (max-width: 600px) */
-    @media (max-width: 600px) {
+    /* 1. REVISI V4: Media Query untuk tampilan HP/Sempit (max-width: 767px) */
+    /* Ini akan mencakup HP dan tablet di mode Vertikal */
+    @media (max-width: 767px) {
       html, body {
         justify-content: flex-start;
-        padding-top: 80px; /* Ditingkatkan agar ada jarak dari atas */
+        padding-top: 80px; 
         overflow-y: auto; 
       }
 
       h1 { 
-        font-size: 1.5em; /* Dikecilkan */
+        font-size: 1.5em; 
         margin-bottom: 15px;
       }
       
       p { 
-        font-size: 0.9em; /* Dikecilkan */
+        font-size: 0.9em; 
         margin-bottom: 15px;
       }
       
       a { 
-        font-size: 0.95em; /* Lebih compact */
-        padding: 12px 20px; /* Lebih compact */
+        font-size: 0.95em; 
+        padding: 12px 20px; 
         margin-bottom: 15px;
       }
       
       .note { 
-        font-size: 0.85em; /* Lebih kecil */
+        font-size: 0.85em; 
       }
     }
     
-    /* 2. Media Query untuk Tablet dan Desktop (min-width: 768px) - Sama seperti V2 */
+    /* 2. Media Query untuk Tablet dan Desktop (min-width: 768px) */
+    /* Ini akan mencakup PC/Desktop dan tablet di mode Horizontal */
     @media (min-width: 768px) {
       h1 { 
         font-size: 2em; 
@@ -135,7 +137,7 @@
       }
     }
 
-    /* 3. Media Query untuk tampilan horizontal (orientation: landscape) - Sama seperti V2 */
+    /* 3. Media Query untuk tampilan horizontal (orientation: landscape) */
     @media (orientation: landscape) {
       html, body {
         background-size: cover;
