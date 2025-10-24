@@ -17,17 +17,16 @@
       font-family: Arial, sans-serif;
       color: white;
       text-align: center;
-      /* overflow: hidden; Dihapus agar konten tidak terpotong */
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       padding: 20px;
       
-      /* Background + overlay (Tambahkan cache busting jika diperlukan) */
+      /* Background + overlay: PARAMETER BARU (?v=8) */
       background: 
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
-        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=20251025') no-repeat center center fixed; 
+        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=8') no-repeat center center fixed; 
       background-size: cover;
       background-attachment: fixed;
 
@@ -42,7 +41,7 @@
     }
 
     h1 {
-      font-size: 2em; /* Mengecilkan default H1 agar compact di layar lebar */
+      font-size: 2em; 
       margin-bottom: 20px;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
       opacity: 0;
@@ -50,24 +49,22 @@
     }
 
     p {
-      font-size: 1.05em; /* Mengecilkan default P */
+      font-size: 1.05em; 
       margin-bottom: 20px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
       opacity: 0;
       animation: fadeIn 1s ease forwards 0.6s;
     }
 
-    /* REVISI V5: Aturan Tombol Paling Compact untuk SEMUA (default) */
+    /* Aturan Tombol Paling Compact untuk SEMUA (default) */
     a {
       display: inline-block;
       background: #5e60ce;
       color: white;
       text-decoration: none;
-      /* Paling compact */
       padding: 12px 24px; 
       border-radius: 12px;
       font-weight: bold;
-      /* Paling compact */
       font-size: 1em; 
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       transition: 0.3s;
@@ -94,7 +91,7 @@
       to { opacity: 1; }
     }
 
-    /* REVISI V5: Hanya satu media query untuk HP yang sangat sempit */
+    /* Hanya satu media query untuk HP yang sangat sempit */
     @media (max-width: 480px) {
       html, body {
         justify-content: flex-start;
@@ -107,19 +104,16 @@
       a { font-size: 0.9em; padding: 10px 18px; }
       .note { font-size: 0.8em; }
     }
-    
-    /* Hapus media query min-width: 768px dan orientation: landscape yang menjadi sumber konflik */
-
   </style>
 </head>
 <body>
   <h1>🎮 Join Seikai Online Server</h1>
-  <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock (Windows 10).</p>
+  <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock.</p>
   <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25669">
     🚀 Tambahkan ke Minecraft
   </a>
   <div class="note">
-    <p>Untuk pemain HP (Android/iOS), tambahkan server secara manual:</p>
+    <p>Untuk pemain HP (Android/iOS), juga dapat menambahkan server secara manual:</p>
     <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25669</p>
   </div>
 </body>
