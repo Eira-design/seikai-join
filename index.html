@@ -42,7 +42,7 @@
     }
 
     h1 {
-      font-size: 2.5em; /* Default: untuk layar lebar */
+      font-size: 2.5em; 
       margin-bottom: 20px;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
       opacity: 0;
@@ -50,24 +50,22 @@
     }
 
     p {
-      font-size: 1.1em; /* Default: untuk layar lebar */
+      font-size: 1.1em; 
       margin-bottom: 20px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
       opacity: 0;
       animation: fadeIn 1s ease forwards 0.6s;
     }
 
-    /* Revisi untuk tampilan Compact di Layar Lebar (Default) */
+    /* Aturan Tombol Compact Default (Layar Lebar) */
     a {
       display: inline-block;
       background: #5e60ce;
       color: white;
       text-decoration: none;
-      /* Nilai compact */
       padding: 14px 28px; 
       border-radius: 12px;
       font-weight: bold;
-      /* Nilai compact */
       font-size: 1.1em; 
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       transition: 0.3s;
@@ -94,42 +92,55 @@
       to { opacity: 1; }
     }
 
-    /* 1. Media Query untuk tampilan HP (max-width: 600px) */
+    /* 1. REVISI V3: Media Query untuk tampilan HP/Sempit (max-width: 600px) */
     @media (max-width: 600px) {
       html, body {
         justify-content: flex-start;
-        padding-top: 60px;
+        padding-top: 80px; /* Ditingkatkan agar ada jarak dari atas */
         overflow-y: auto; 
       }
 
-      h1 { font-size: 1.8em; }
-      p { font-size: 1em; }
-      a { font-size: 1em; padding: 14px 24px; }
-      .note { font-size: 0.9em; }
+      h1 { 
+        font-size: 1.5em; /* Dikecilkan */
+        margin-bottom: 15px;
+      }
+      
+      p { 
+        font-size: 0.9em; /* Dikecilkan */
+        margin-bottom: 15px;
+      }
+      
+      a { 
+        font-size: 0.95em; /* Lebih compact */
+        padding: 12px 20px; /* Lebih compact */
+        margin-bottom: 15px;
+      }
+      
+      .note { 
+        font-size: 0.85em; /* Lebih kecil */
+      }
     }
     
-    /* 2. Media Query BARU/REVISI: untuk Tablet dan Desktop (min-width: 768px) */
+    /* 2. Media Query untuk Tablet dan Desktop (min-width: 768px) - Sama seperti V2 */
     @media (min-width: 768px) {
       h1 { 
-        font-size: 2em; /* Mengecilkan H1 dari 2.5em default */
+        font-size: 2em; 
       }
       p { 
-        font-size: 1.05em; /* Mengecilkan P dari 1.1em default */
+        font-size: 1.05em; 
       }
       a {
-        /* Memastikan setting compact diterapkan (walaupun sama dengan default a) */
         font-size: 1.1em; 
         padding: 14px 28px;
       }
     }
 
-    /* 3. Media Query untuk tampilan horizontal (orientation: landscape) */
+    /* 3. Media Query untuk tampilan horizontal (orientation: landscape) - Sama seperti V2 */
     @media (orientation: landscape) {
       html, body {
         background-size: cover;
         justify-content: center;
       }
-      /* Tidak perlu override ukuran elemen di sini lagi */
     }
   </style>
 </head>
