@@ -17,16 +17,17 @@
       font-family: Arial, sans-serif;
       color: white;
       text-align: center;
+      /* overflow: hidden; Dihapus agar konten tidak terpotong */
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       padding: 20px;
       
-      /* Background + overlay: PARAMETER SUDAH DIGANTI MENJADI ?v=7 */
+      /* Background + overlay (Tambahkan cache busting jika diperlukan) */
       background: 
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
-        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=7') no-repeat center center fixed; 
+        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=20251025') no-repeat center center fixed; 
       background-size: cover;
       background-attachment: fixed;
 
@@ -40,9 +41,8 @@
       100% { background-position: center bottom; }
     }
 
-    /* REVISI V6: Ukuran Default (PC/Tablet Horizontal) */
     h1 {
-      font-size: 2.3em; 
+      font-size: 2em; /* Mengecilkan default H1 agar compact di layar lebar */
       margin-bottom: 20px;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
       opacity: 0;
@@ -50,24 +50,25 @@
     }
 
     p {
-      font-size: 1.1em; 
+      font-size: 1.05em; /* Mengecilkan default P */
       margin-bottom: 20px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
       opacity: 0;
       animation: fadeIn 1s ease forwards 0.6s;
     }
 
-    /* REVISI V6: Tombol Default (PC/Tablet Horizontal) */
+    /* REVISI V5: Aturan Tombol Paling Compact untuk SEMUA (default) */
     a {
       display: inline-block;
       background: #5e60ce;
       color: white;
       text-decoration: none;
-      /* Ukuran medium-compact */
-      padding: 14px 28px; 
+      /* Paling compact */
+      padding: 12px 24px; 
       border-radius: 12px;
       font-weight: bold;
-      font-size: 1.1em; 
+      /* Paling compact */
+      font-size: 1em; 
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       transition: 0.3s;
       margin-bottom: 20px;
@@ -93,35 +94,22 @@
       to { opacity: 1; }
     }
 
-    /* REVISI V6: MEDIA QUERY KETAT untuk HP & Tablet Vertikal (max-width: 767px) */
-    /* Ini akan menimpa (override) aturan default di atas untuk semua perangkat sempit */
-    @media (max-width: 767px) {
+    /* REVISI V5: Hanya satu media query untuk HP yang sangat sempit */
+    @media (max-width: 480px) {
       html, body {
         justify-content: flex-start;
         padding-top: 50px; 
         overflow-y: auto; 
       }
 
-      h1 { 
-        font-size: 1.8em; 
-        margin-bottom: 15px;
-      }
-      
-      p { 
-        font-size: 1em; 
-        margin-bottom: 15px;
-      }
-      
-      a { 
-        font-size: 1em; 
-        padding: 12px 24px; 
-        margin-bottom: 15px;
-      }
-      
-      .note { 
-        font-size: 0.85em; 
-      }
+      h1 { font-size: 1.4em; }
+      p { font-size: 0.9em; }
+      a { font-size: 0.9em; padding: 10px 18px; }
+      .note { font-size: 0.8em; }
     }
+    
+    /* Hapus media query min-width: 768px dan orientation: landscape yang menjadi sumber konflik */
+
   </style>
 </head>
 <body>
