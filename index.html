@@ -11,7 +11,7 @@
       overflow: hidden;
     }
 
-    /* 🔹 Latar belakang utama */
+    /* 🔹 Latar belakang */
     .background {
       position: fixed;
       top: 0; left: 0;
@@ -24,13 +24,12 @@
       z-index: 0;
     }
 
-    /* 🔹 Animasi background pelan naik-turun */
     @keyframes moveBg {
       0% { background-position: center top; }
       100% { background-position: center bottom; }
     }
 
-    /* 🔹 Konten utama */
+    /* 🔹 Konten */
     .content {
       position: relative;
       z-index: 1;
@@ -38,14 +37,14 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* center di PC */
+      justify-content: center;
       align-items: center;
       text-align: center;
       color: white;
       padding: 20px;
     }
 
-    /* 🔹 Efek muncul lembut */
+    /* Efek fade-in umum */
     h1, p, a, .note {
       opacity: 0;
       animation: fadeIn 1s forwards;
@@ -59,13 +58,30 @@
 
     @keyframes fadeIn { to { opacity:1; } }
 
-    /* 🔹 Responsive (HP) */
-    @media (max-width:600px){
+    /* 🔹 Efek khusus HP */
+    @media (max-width:600px) {
       .content {
-        justify-content: flex-start;
-        padding-top: 60px;
+        justify-content: center;
+        animation: moveUp 2.5s ease forwards;
+        animation-delay: 1s; /* tunggu sebentar sebelum mulai naik */
       }
-      h1{ font-size:2em; margin-top:20px; }
+
+      @keyframes moveUp {
+        0% {
+          transform: translateY(0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-100px); /* naik ke posisi final */
+          opacity: 1;
+        }
+      }
+
+      h1{ font-size:2em; }
       a{ padding:14px 24px; font-size:1em; }
       .note{ font-size:0.9em; }
     }
