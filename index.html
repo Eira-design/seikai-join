@@ -5,53 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Seikai Server</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     html, body {
       height: 100%;
+      width: 100%;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* untuk tampilan PC */
-      align-items: center;
-      text-align: center;
       color: white;
-      padding: 20px;
+      text-align: center;
       overflow: hidden;
-
-      /* Background + overlay gradient */
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-                  url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      
+      /* Background + overlay */
+      background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+        url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center fixed;
       background-size: cover;
-      animation: gradientShift 15s ease infinite;
+      background-attachment: fixed;
+
+      /* Efek animasi background */
+      animation: bgScroll 25s ease-in-out infinite alternate;
     }
 
-    /* Animasi gerak lembut background */
-    @keyframes gradientShift {
+    @keyframes bgScroll {
       0% { background-position: center top; }
-      50% { background-position: center bottom; }
-      100% { background-position: center top; }
-    }
-
-    /* Fade in untuk teks */
-    h1, p, a, .note {
-      opacity: 0;
-      animation: fadeIn 1s forwards;
+      50% { background-position: center center; }
+      100% { background-position: center bottom; }
     }
 
     h1 {
-      animation-delay: 0.3s;
       font-size: 2.5em;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.3s;
     }
+
     p {
-      animation-delay: 0.6s;
       font-size: 1.1em;
       margin-bottom: 20px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.6s;
     }
+
     a {
-      animation-delay: 0.9s;
       display: inline-block;
       background: #5e60ce;
       color: white;
@@ -63,67 +69,63 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       transition: 0.3s;
       margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.9s;
     }
+
     a:hover {
       background: #4a47a3;
       transform: translateY(-3px) scale(1.05);
     }
+
     .note {
-      animation-delay: 1.2s;
       color: #ddd;
       font-size: 0.95em;
       line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.2s;
     }
 
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    /* === ANIMASI HP: teks muncul di tengah lalu naik ke atas === */
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      100% {
-        transform: translateY(-60px);
-      }
-    }
-
-    /* Responsif untuk HP */
+    /* Untuk tampilan HP */
     @media (max-width: 600px) {
       html, body {
         justify-content: flex-start;
-        padding-top: 40px;
+        padding-top: 60px;
+        overflow-y: auto; /* biar bisa scroll kalo terlalu panjang */
       }
 
-      /* Bungkus semua konten dalam container biar bisa digerakkan */
-      .container {
-        animation: fadeUp 2s ease forwards;
-      }
-
-      h1 { font-size: 2em; }
-      a { padding: 14px 24px; font-size: 1em; }
+      h1 { font-size: 1.8em; }
+      p { font-size: 1em; }
+      a { font-size: 1em; padding: 14px 24px; }
       .note { font-size: 0.9em; }
+    }
+
+    /* Untuk tampilan horizontal (tablet / desktop lebar) */
+    @media (orientation: landscape) {
+      html, body {
+        background-size: cover;
+        justify-content: center;
+      }
+
+      h1 { font-size: 2.3em; }
+      a { font-size: 1.1em; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎮 Join Seikai Online Server</h1>
-    <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock (Windows 10).</p>
-    <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25669">
-      🚀 Tambahkan ke Minecraft
-    </a>
-    <div class="note">
-      <p>Untuk pemain HP (Android/iOS), tambahkan server secara manual:</p>
-      <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25669</p>
-    </div>
+  <h1>🎮 Join Seikai Online Server</h1>
+  <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock (Windows 10).</p>
+  <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25669">
+    🚀 Tambahkan ke Minecraft
+  </a>
+  <div class="note">
+    <p>Untuk pemain HP (Android/iOS), tambahkan server secara manual:</p>
+    <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25669</p>
   </div>
 </body>
 </html>
