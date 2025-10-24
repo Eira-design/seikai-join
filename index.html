@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Seikai Server</title>
   <style>
+    /* ========== BAGIAN RESET & UTAMA (Default) ========== */
     * {
       margin: 0;
       padding: 0;
@@ -23,10 +24,10 @@
       flex-direction: column;
       padding: 20px;
       
-      /* Background + overlay: PARAMETER BARU (?v=8) */
+      /* Background + overlay: Ganti nilai 'v=' setiap kali ada perubahan besar */
       background: 
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
-        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=8') no-repeat center center fixed; 
+        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=9') no-repeat center center fixed; 
       background-size: cover;
       background-attachment: fixed;
 
@@ -34,12 +35,14 @@
       animation: bgScroll 25s ease-in-out infinite alternate;
     }
 
+    /* Definisi Animasi Background */
     @keyframes bgScroll {
       0% { background-position: center top; }
       50% { background-position: center center; }
       100% { background-position: center bottom; }
     }
 
+    /* Ukuran Teks Default (Compact untuk PC/Tablet Landscape) */
     h1 {
       font-size: 2em; 
       margin-bottom: 20px;
@@ -56,12 +59,13 @@
       animation: fadeIn 1s ease forwards 0.6s;
     }
 
-    /* Aturan Tombol Paling Compact untuk SEMUA (default) */
+    /* ========== STYLING TOMBOL (Default Compact) ========== */
     a {
       display: inline-block;
       background: #5e60ce;
       color: white;
       text-decoration: none;
+      /* Padding & Font Paling Compact untuk Konsistensi di Semua Layar */
       padding: 12px 24px; 
       border-radius: 12px;
       font-weight: bold;
@@ -78,6 +82,7 @@
       transform: translateY(-3px) scale(1.05);
     }
 
+    /* Styling Teks Catatan Manual */
     .note {
       color: #ddd;
       font-size: 0.95em;
@@ -87,11 +92,13 @@
       animation: fadeIn 1s ease forwards 1.2s;
     }
 
+    /* Definisi Animasi Fade-In */
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    /* Hanya satu media query untuk HP yang sangat sempit */
+    /* ========== MEDIA QUERY (Override untuk HP Layar Sangat Sempit) ========== */
+    /* Berlaku untuk HP yang lebarnya <= 480px, membuat elemen sangat kecil */
     @media (max-width: 480px) {
       html, body {
         justify-content: flex-start;
@@ -107,11 +114,14 @@
   </style>
 </head>
 <body>
-  <h1>🎮 Join Seikai Online Server</h1>
+  <h1>🎮 Join Seikai Server</h1>
+  
   <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock.</p>
+  
   <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25669">
     🚀 Tambahkan ke Minecraft
   </a>
+  
   <div class="note">
     <p>Untuk pemain HP (Android/iOS), juga dapat menambahkan server secara manual:</p>
     <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25669</p>
