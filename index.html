@@ -2,95 +2,119 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Seikai Server</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    /* 🔹 Latar belakang */
-    .background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: 
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
-        url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
-      background-size: cover;
-      animation: moveBg 25s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes moveBg {
-      0% { background-position: center top; }
-      100% { background-position: center bottom; }
-    }
-
-    /* 🔹 Konten */
-    .content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: center; /* untuk tampilan PC */
       align-items: center;
       text-align: center;
       color: white;
       padding: 20px;
+      overflow: hidden;
+
+      /* Background + overlay gradient */
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+                  url('https://eira-design.github.io/seikai-join/assets/background.jpg') no-repeat center center;
+      background-size: cover;
+      animation: gradientShift 15s ease infinite;
     }
 
-    /* Efek fade-in umum */
+    /* Animasi gerak lembut background */
+    @keyframes gradientShift {
+      0% { background-position: center top; }
+      50% { background-position: center bottom; }
+      100% { background-position: center top; }
+    }
+
+    /* Fade in untuk teks */
     h1, p, a, .note {
       opacity: 0;
       animation: fadeIn 1s forwards;
     }
 
-    h1 { animation-delay:0.3s; font-size:2.5em; margin-bottom:20px; text-shadow:2px 2px 4px rgba(0,0,0,0.7);}
-    p { animation-delay:0.6s; font-size:1.1em; margin-bottom:20px; text-shadow:1px 1px 3px rgba(0,0,0,0.7);}
-    a { animation-delay:0.9s; display:inline-block; background:#5e60ce; color:white; text-decoration:none; padding:16px 32px; border-radius:12px; font-weight:bold; font-size:1.2em; box-shadow:0 4px 8px rgba(0,0,0,0.3); transition:0.3s; margin-bottom:20px;}
-    a:hover { background:#4a47a3; transform: translateY(-3px) scale(1.05);}
-    .note { animation-delay:1.2s; color:#ddd; font-size:0.95em; line-height:1.5; text-shadow:1px 1px 2px rgba(0,0,0,0.7); }
+    h1 {
+      animation-delay: 0.3s;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    p {
+      animation-delay: 0.6s;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    a {
+      animation-delay: 0.9s;
+      display: inline-block;
+      background: #5e60ce;
+      color: white;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      margin-bottom: 20px;
+    }
+    a:hover {
+      background: #4a47a3;
+      transform: translateY(-3px) scale(1.05);
+    }
+    .note {
+      animation-delay: 1.2s;
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.5;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    }
 
-    @keyframes fadeIn { to { opacity:1; } }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
-    /* 🔹 Efek khusus HP */
-    @media (max-width:600px) {
-      .content {
-        justify-content: center;
-        animation: moveUp 2.5s ease forwards;
-        animation-delay: 1s; /* tunggu sebentar sebelum mulai naik */
+    /* === ANIMASI HP: teks muncul di tengah lalu naik ke atas === */
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-60px);
+      }
+    }
+
+    /* Responsif untuk HP */
+    @media (max-width: 600px) {
+      html, body {
+        justify-content: flex-start;
+        padding-top: 40px;
       }
 
-      @keyframes moveUp {
-        0% {
-          transform: translateY(0);
-          opacity: 0;
-        }
-        20% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        100% {
-          transform: translateY(-100px); /* naik ke posisi final */
-          opacity: 1;
-        }
+      /* Bungkus semua konten dalam container biar bisa digerakkan */
+      .container {
+        animation: fadeUp 2s ease forwards;
       }
 
-      h1{ font-size:2em; }
-      a{ padding:14px 24px; font-size:1em; }
-      .note{ font-size:0.9em; }
+      h1 { font-size: 2em; }
+      a { padding: 14px 24px; font-size: 1em; }
+      .note { font-size: 0.9em; }
     }
   </style>
 </head>
 <body>
-  <div class="background"></div>
-
-  <div class="content">
+  <div class="container">
     <h1>🎮 Join Seikai Online Server</h1>
     <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock (Windows 10).</p>
     <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25669">
