@@ -1,130 +1,302 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join Seikai Server</title>
+  <title>Seikai Online - Join the Adventure</title>
+  
+  <link rel="icon" href="https://via.placeholder.com/32">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    /* ========== BAGIAN RESET & UTAMA (Default) ========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ========== VARIABLES & RESET ========== */
+    :root {
+      --primary: #6c5ce7;
+      --secondary: #a29bfe;
+      --accent: #fd79a8;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-main: #ffffff;
+      --text-dim: #b2bec3;
+      /* Warna Baru untuk WhatsApp */
+      --whatsapp-green: #25D366;
     }
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      padding: 20px;
-      
-      /* Background + overlay: Ganti nilai 'v=' setiap kali ada perubahan besar */
-      background: 
-        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
-        url('https://eira-design.github.io/seikai-join/assets/background.jpg?v=9') no-repeat center center fixed; 
-      background-size: cover;
-      background-attachment: fixed;
-
-      /* Efek animasi background */
-      animation: bgScroll 25s ease-in-out infinite alternate;
+      background: #000;
+      color: var(--text-main);
     }
 
-    /* Definisi Animasi Background */
-    @keyframes bgScroll {
-      0% { background-position: center top; }
-      50% { background-position: center center; }
-      100% { background-position: center bottom; }
+    /* ========== BACKGROUND ANIMATION ========== */
+    .bg-wrapper {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+    }
+    
+    .bg-image {
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(15, 15, 30, 0.8), rgba(15, 15, 30, 0.6)),
+                  url('https://raw.githubusercontent.com/Eira-design/seikai-join/ff7669349534cd83edbd283fe0a6722bbcda028e/assets/seikai.webp') center/cover no-repeat;
+      filter: blur(4px);
+      transform: scale(1.1);
+      animation: breathe 15s ease-in-out infinite alternate;
     }
 
-    /* Ukuran Teks Default (Compact untuk PC/Tablet Landscape) */
+    @keyframes breathe {
+      0% { transform: scale(1.1); }
+      100% { transform: scale(1.15); }
+    }
+
+    /* ========== MAIN CARD (GLASSMORPHISM PRO) ========== */
+    .card {
+      position: relative;
+      width: 90%;
+      max-width: 450px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 50px 30px 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== LOGO AREA ========== */
+    .logo-container {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      background: #1e1e2e;
+      border-radius: 50%;
+      padding: 5px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border: 3px solid var(--primary);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      animation: spinSlow 20s linear infinite;
+    }
+
+    @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+
+    /* ========== TYPOGRAPHY ========== */
     h1 {
-      font-size: 2em; 
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 0.3s;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-top: 35px;
+      background: linear-gradient(135deg, #fff 0%, #a29bfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
     }
 
-    p {
-      font-size: 1.05em; 
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 0.6s;
+    p.tagline {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      font-weight: 400;
     }
 
-    /* ========== STYLING TOMBOL (Default Compact) ========== */
-    a {
-      display: inline-block;
-      background: #5e60ce;
+    /* ========== IP COPY BOX (THE PRO FEATURE) ========== */
+    .ip-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .ip-box:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: scale(1.02);
+      border-color: var(--primary);
+    }
+
+    .ip-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .ip-address {
+      font-family: 'Courier New', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ip-icon { font-size: 0.9rem; opacity: 0.7; }
+
+    /* Tooltip "Copied!" */
+    .tooltip {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
       color: white;
-      text-decoration: none;
-      /* Padding & Font Paling Compact untuk Konsistensi di Semua Layar */
-      padding: 12px 24px; 
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1em; 
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0;
       transition: 0.3s;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 0.9s;
+      pointer-events: none;
+    }
+    
+    .ip-box.copied .tooltip {
+      opacity: 1;
+      top: -40px;
     }
 
-    a:hover {
-      background: #4a47a3;
-      transform: translateY(-3px) scale(1.05);
+    /* ========== BUTTONS ========== */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    /* Styling Teks Catatan Manual */
-    .note {
-      color: #ddd;
-      font-size: 0.95em;
-      line-height: 1.5;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 1.2s;
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
     }
 
-    /* Definisi Animasi Fade-In */
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .btn-play {
+      background: linear-gradient(90deg, var(--primary), #8e44ad);
+      color: white;
+      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
     }
 
-    /* ========== MEDIA QUERY (Override untuk HP Layar Sangat Sempit) ========== */
-    /* Berlaku untuk HP yang lebarnya <= 480px, membuat elemen sangat kecil */
-    @media (max-width: 480px) {
-      html, body {
-        justify-content: flex-start;
-        padding-top: 50px; 
-        overflow-y: auto; 
-      }
+    .btn-play:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+    }
 
-      h1 { font-size: 1.4em; }
-      p { font-size: 0.9em; }
-      a { font-size: 0.9em; padding: 10px 18px; }
-      .note { font-size: 0.8em; }
+    /* TOMBOL WHATSAPP */
+    .btn-whatsapp {
+      background: rgba(37, 211, 102, 0.15); /* Warna Hijau WA transparan */
+      color: var(--whatsapp-green);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--whatsapp-green);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      margin-top: 25px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* Mobile Responsive */
+    @media(max-width: 480px) {
+      .card { padding: 40px 20px 30px; width: 85%; }
+      h1 { font-size: 1.8rem; }
+      .ip-address { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
-  <h1>🌸 Join Seikai Server 🌸</h1>
-  
-  <p>Klik tombol di bawah ini untuk menambahkan server ke Minecraft Bedrock.</p>
-  
-  <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25638">
-    🚀 Tambahkan ke Minecraft
-  </a>
-  
-  <div class="note">
-    <p>Untuk pemain HP (Android/iOS), juga dapat menambahkan server secara manual:</p>
-    <p><b>Alamat:</b> mc.seikai.online<br><b>Port:</b> 25638</p>
+
+  <div class="bg-wrapper">
+    <div class="bg-image"></div>
   </div>
+
+  <div class="card">
+    <div class="logo-container">
+      <img src="https://img.freepik.com/free-vector/cute-fox-operating-laptop-cartoon-illustration_138676-2742.jpg" alt="Logo" class="logo-img">
+    </div>
+
+    <h1>Seikai Online</h1>
+    <p class="tagline">The best Minecraft Bedrock fantasy survival experience.</p>
+
+    <div class="ip-box" onclick="copyIP()" id="ipBox">
+      <div class="tooltip" id="tooltip">COPIED!</div>
+      <div class="ip-label">Server Address</div>
+      <div class="ip-address">
+        mc.seikai.online <i class="fa-regular fa-copy ip-icon"></i>
+      </div>
+      <div style="font-size: 0.8rem; color: #aaa; margin-top:5px;">Port: 25638</div>
+    </div>
+
+    <div class="btn-group">
+      <a href="minecraft:?addExternalServer=Seikai%20Online|mc.seikai.online:25638" class="btn btn-play">
+        <i class="fa-solid fa-rocket"></i> Launch Minecraft
+      </a>
+      
+      <a href="https://chat.whatsapp.com/F1iQAHJn9G9H6cJmAbRa6o" class="btn btn-whatsapp" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Join WhatsApp (ID)
+      </a>
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Seikai Project. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    function copyIP() {
+      const ip = "mc.seikai.online";
+      const ipBox = document.getElementById('ipBox');
+      
+      navigator.clipboard.writeText(ip).then(() => {
+        ipBox.classList.add('copied');
+        setTimeout(() => {
+          ipBox.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+
 </body>
 </html>
