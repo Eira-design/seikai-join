@@ -27,22 +27,22 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ========== BODY (REVISI RESPONSIF) ========== */
+    /* ========== BODY (PERFECT CENTERING) ========== */
     body {
-      min-height: 100vh; /* Menggunakan min-height agar bisa discroll */
+      min-height: 100vh;
       font-family: 'Poppins', sans-serif;
-      /* overflow: hidden; <-- DIHAPUS AGAR TIDAK TERPOTONG SAAT LANDSCAPE */
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      /* Menggunakan Flexbox dengan margin:auto pada child adalah cara teraman untuk responsive */
+      display: flex; 
+      flex-direction: column;
       background: #000;
       color: var(--text-main);
-      padding: 20px; /* Padding aman untuk layar kecil */
+      /* Padding aman agar kartu tidak mepet layar HP */
+      padding: 20px; 
     }
 
-    /* ========== BACKGROUND ANIMATION (FIXED) ========== */
+    /* ========== BACKGROUND ANIMATION ========== */
     .bg-wrapper {
-      position: fixed; /* Background diam di belakang saat scroll */
+      position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
       pointer-events: none;
@@ -62,11 +62,15 @@
       100% { transform: scale(1.15); }
     }
 
-    /* ========== MAIN CARD (GLASSMORPHISM PRO) ========== */
+    /* ========== MAIN CARD ========== */
     .card {
       position: relative;
       width: 100%;
       max-width: 450px;
+      /* KUNCI RESPONSIVE: margin: auto membuat kartu ke tengah vertikal & horizontal,
+         tapi tetap aman discroll jika layar pendek */
+      margin: auto; 
+      
       background: var(--glass);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -76,10 +80,6 @@
       text-align: center;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-      
-      /* Margin aman untuk scroll */
-      margin-top: 20px;
-      margin-bottom: 20px;
     }
 
     @keyframes floatUp {
@@ -93,8 +93,7 @@
       top: -50px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
-      height: 100px;
+      width: 100px; height: 100px;
       background: #1e1e2e;
       border-radius: 50%;
       padding: 5px;
@@ -103,161 +102,126 @@
     }
 
     .logo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
       animation: spinSlow 20s linear infinite;
     }
-
     @keyframes spinSlow { 100% { transform: rotate(360deg); } }
 
     /* ========== TYPOGRAPHY ========== */
     h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-top: 35px;
+      font-size: 2.2rem; font-weight: 800; margin-top: 35px;
       background: linear-gradient(135deg, #fff 0%, #a29bfe 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -1px;
-      line-height: 1.2;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -1px; line-height: 1.2;
     }
 
     p.tagline {
-      color: var(--text-dim);
-      font-size: 0.95rem;
-      margin-bottom: 30px;
-      font-weight: 400;
-      margin-top: 5px;
+      color: var(--text-dim); font-size: 0.95rem; margin-bottom: 30px;
+      font-weight: 400; margin-top: 5px;
     }
 
-    /* ========== IP COPY BOX ========== */
-    .ip-box {
+    /* ========== SPLIT BOX (GRID SYSTEM) ========== */
+    .server-details {
+      display: flex; gap: 10px; margin-bottom: 25px;
+    }
+
+    .copy-box {
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
-      padding: 15px;
-      margin-bottom: 25px;
+      padding: 12px 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
       position: relative;
+      transition: all 0.3s ease;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
     }
 
-    .ip-box:hover {
+    /* Ukuran Proporsional */
+    .box-ip { flex: 7; }
+    .box-port { flex: 3; }
+
+    .copy-box:hover {
       background: rgba(0, 0, 0, 0.6);
-      transform: scale(1.02);
+      transform: translateY(-2px);
       border-color: var(--primary);
     }
 
-    .ip-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 5px;
+    .copy-box:active { transform: scale(0.98); }
+
+    .box-label {
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--primary); font-weight: 700; margin-bottom: 2px;
     }
 
-    .ip-address {
+    .box-value {
       font-family: 'Courier New', monospace;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap; /* Agar IP tidak pecah di layar kecil */
-      word-break: break-all;
-    }
-
-    .ip-icon { font-size: 0.9rem; opacity: 0.7; }
-
-    .tooltip {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      opacity: 0;
-      transition: 0.3s;
-      pointer-events: none;
+      font-size: 1.1rem; font-weight: 700; color: #fff;
+      display: flex; align-items: center; gap: 8px;
     }
     
-    .ip-box.copied .tooltip {
-      opacity: 1;
-      top: -40px;
+    .box-value i { font-size: 0.8rem; opacity: 0.6; }
+
+    .tooltip {
+      position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: white;
+      padding: 4px 10px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 600;
+      opacity: 0; transition: 0.3s; pointer-events: none;
+      white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+    
+    .copy-box.copied .tooltip { opacity: 1; top: -35px; }
 
     /* ========== BUTTONS ========== */
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .btn-group { display: flex; flex-direction: column; gap: 12px; }
 
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 16px; border-radius: 14px;
+      font-weight: 600; text-decoration: none; transition: all 0.3s ease;
+      font-size: 1rem; position: relative; overflow: hidden;
     }
+
+    /* Efek Kilau Button */
+    .btn::after {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .btn:hover::after { left: 100%; }
 
     .btn-play {
       background: linear-gradient(90deg, var(--primary), #8e44ad);
-      color: white;
-      box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+      color: white; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
     }
-
-    .btn-play:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
-    }
+    .btn-play:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6); }
 
     .btn-whatsapp {
-      background: rgba(37, 211, 102, 0.15);
-      color: var(--whatsapp-green);
+      background: rgba(37, 211, 102, 0.15); color: var(--whatsapp-green);
       border: 1px solid rgba(37, 211, 102, 0.3);
     }
-
     .btn-whatsapp:hover {
-      background: var(--whatsapp-green);
-      color: white;
+      background: var(--whatsapp-green); color: white;
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     }
 
-    /* ========== FOOTER ========== */
-    .footer {
-      margin-top: 25px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-    }
+    .footer { margin-top: 25px; font-size: 0.8rem; color: rgba(255,255,255,0.3); }
 
-    /* ========== MEDIA QUERIES (REVISI) ========== */
+    /* ========== MEDIA QUERIES (FINAL POLISH) ========== */
     @media(max-width: 480px) {
-      .card { padding: 55px 20px 30px; width: 95%; }
+      .card { padding: 55px 20px 30px; width: 100%; }
       h1 { font-size: 1.8rem; }
-      .ip-address { font-size: 1.1rem; }
+      .box-value { font-size: 0.95rem; } 
     }
-
-    /* Khusus Layar Landscape/Pendek */
+    
+    /* Responsive Landscape (Rotasi) */
     @media (max-height: 600px) {
-      h1 { font-size: 1.5rem; margin-top: 25px; }
-      .btn { padding: 12px; }
-      .card { padding-top: 40px; }
+      /* Memberikan ruang extra saat landscape agar enak discroll */
+      body { padding-top: 60px; padding-bottom: 20px; } 
+      .card { margin-top: 0; }
+      h1 { font-size: 1.5rem; margin-top: 15px; }
     }
   </style>
 </head>
@@ -275,13 +239,22 @@
     <h1>正解 Seikai</h1>
     <p class="tagline">The best Minecraft Bedrock fantasy survival experience.</p>
 
-    <div class="ip-box" onclick="copyIP()" id="ipBox">
-      <div class="tooltip" id="tooltip">COPIED!</div>
-      <div class="ip-label">Server Address</div>
-      <div class="ip-address">
-        mc.seikai.online <i class="fa-regular fa-copy ip-icon"></i>
+    <div class="server-details">
+      <div class="copy-box box-ip" onclick="copyText('mc.seikai.online', this)">
+        <div class="tooltip">COPIED!</div>
+        <div class="box-label">ADDRESS</div>
+        <div class="box-value">
+          mc.seikai.online <i class="fa-regular fa-copy"></i>
+        </div>
       </div>
-      <div style="font-size: 0.8rem; color: #aaa; margin-top:5px;">Port: 25638</div>
+
+      <div class="copy-box box-port" onclick="copyText('25638', this)">
+        <div class="tooltip">COPIED!</div>
+        <div class="box-label">PORT</div>
+        <div class="box-value">
+          25638 <i class="fa-regular fa-copy"></i>
+        </div>
+      </div>
     </div>
 
     <div class="btn-group">
@@ -300,14 +273,11 @@
   </div>
 
   <script>
-    function copyIP() {
-      const ip = "mc.seikai.online";
-      const ipBox = document.getElementById('ipBox');
-      
-      navigator.clipboard.writeText(ip).then(() => {
-        ipBox.classList.add('copied');
+    function copyText(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        element.classList.add('copied');
         setTimeout(() => {
-          ipBox.classList.remove('copied');
+          element.classList.remove('copied');
         }, 2000);
       });
     }
