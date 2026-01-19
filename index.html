@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Seikai Server - Join the Adventure</title>
   
   <link rel="icon" href="https://via.placeholder.com/32">
@@ -22,28 +22,30 @@
       --glass-border: rgba(255, 255, 255, 0.1);
       --text-main: #ffffff;
       --text-dim: #b2bec3;
-      /* Warna Baru untuk WhatsApp */
       --whatsapp-green: #25D366;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    /* ========== BODY (REVISI RESPONSIF) ========== */
     body {
-      height: 100vh;
+      min-height: 100vh; /* Menggunakan min-height agar bisa discroll */
       font-family: 'Poppins', sans-serif;
-      overflow: hidden;
+      /* overflow: hidden; <-- DIHAPUS AGAR TIDAK TERPOTONG SAAT LANDSCAPE */
       display: flex;
       justify-content: center;
       align-items: center;
       background: #000;
       color: var(--text-main);
+      padding: 20px; /* Padding aman untuk layar kecil */
     }
 
-    /* ========== BACKGROUND ANIMATION ========== */
+    /* ========== BACKGROUND ANIMATION (FIXED) ========== */
     .bg-wrapper {
-      position: absolute;
+      position: fixed; /* Background diam di belakang saat scroll */
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
+      pointer-events: none;
     }
     
     .bg-image {
@@ -63,7 +65,7 @@
     /* ========== MAIN CARD (GLASSMORPHISM PRO) ========== */
     .card {
       position: relative;
-      width: 90%;
+      width: 100%;
       max-width: 450px;
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -74,6 +76,10 @@
       text-align: center;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+      
+      /* Margin aman untuk scroll */
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     @keyframes floatUp {
@@ -115,6 +121,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: -1px;
+      line-height: 1.2;
     }
 
     p.tagline {
@@ -122,9 +129,10 @@
       font-size: 0.95rem;
       margin-bottom: 30px;
       font-weight: 400;
+      margin-top: 5px;
     }
 
-    /* ========== IP COPY BOX (THE PRO FEATURE) ========== */
+    /* ========== IP COPY BOX ========== */
     .ip-box {
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255,255,255,0.05);
@@ -160,11 +168,12 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap; /* Agar IP tidak pecah di layar kecil */
+      word-break: break-all;
     }
 
     .ip-icon { font-size: 0.9rem; opacity: 0.7; }
 
-    /* Tooltip "Copied!" */
     .tooltip {
       position: absolute;
       top: -30px;
@@ -218,9 +227,8 @@
       box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
     }
 
-    /* GAYA BARU UNTUK TOMBOL WHATSAPP */
     .btn-whatsapp {
-      background: rgba(37, 211, 102, 0.15); /* Warna Hijau WA transparan */
+      background: rgba(37, 211, 102, 0.15);
       color: var(--whatsapp-green);
       border: 1px solid rgba(37, 211, 102, 0.3);
     }
@@ -238,11 +246,18 @@
       color: rgba(255,255,255,0.3);
     }
 
-    /* Mobile Responsive */
+    /* ========== MEDIA QUERIES (REVISI) ========== */
     @media(max-width: 480px) {
-      .card { padding: 40px 20px 30px; width: 85%; }
+      .card { padding: 55px 20px 30px; width: 95%; }
       h1 { font-size: 1.8rem; }
       .ip-address { font-size: 1.1rem; }
+    }
+
+    /* Khusus Layar Landscape/Pendek */
+    @media (max-height: 600px) {
+      h1 { font-size: 1.5rem; margin-top: 25px; }
+      .btn { padding: 12px; }
+      .card { padding-top: 40px; }
     }
   </style>
 </head>
